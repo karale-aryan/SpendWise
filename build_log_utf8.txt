@@ -1,0 +1,84 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.spendwise:spendwise >-----------------------
+[INFO] Building SpendWise 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.3.2:clean (default-clean) @ spendwise ---
+[INFO] Deleting C:\Users\Aryan\IdeaProjects\SpendWise\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ spendwise ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ spendwise ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 55 source files with javac [debug release 17] to target\classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[51,32] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[82,34] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[100,27] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[118,27] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[127,34] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[144,14] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[148,9] cannot find symbol
+  symbol:   variable expenseRepository
+  location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[171,16] cannot find symbol
+  symbol:   variable userRepository
+  location: class com.spendwise.service.ExpenseService
+[INFO] 8 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.262 s
+[INFO] Finished at: 2026-02-16T19:48:50+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile (default-compile) on project spendwise: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[51,32] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[82,34] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[100,27] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[118,27] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[127,34] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[144,14] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[148,9] cannot find symbol
+[ERROR]   symbol:   variable expenseRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] /C:/Users/Aryan/IdeaProjects/SpendWise/src/main/java/com/spendwise/service/ExpenseService.java:[171,16] cannot find symbol
+[ERROR]   symbol:   variable userRepository
+[ERROR]   location: class com.spendwise.service.ExpenseService
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
