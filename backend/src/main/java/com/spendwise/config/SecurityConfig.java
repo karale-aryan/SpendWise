@@ -19,10 +19,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- * Security configuration for SpendWise application.
- * Configures JWT-based authentication, authorization, and security filters.
- */
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -32,79 +35,91 @@ public class SecurityConfig {
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    /**
-     * Configures the security filter chain with JWT authentication.
-     *
-     * @param http HttpSecurity object
-     * @return configured SecurityFilterChain
-     * @throws Exception if configuration fails
-     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
         http
-                // Disable CSRF for stateless JWT authentication
+                // Enable CORS
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
+                // Disable CSRF
                 .csrf(AbstractHttpConfigurer::disable)
 
-                // Configure authorization rules
+                // Authorization
                 .authorizeHttpRequests(auth -> auth
-                        // Public endpoints - no authentication required
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/public/**").permitAll()
-
-                        // All other endpoints require authentication
+                        .requestMatchers("/actuator/**").permitAll()
                         .anyRequest().authenticated())
 
-                // Configure stateless session management
-                // No session will be created or used
+                // Stateless JWT
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                // Set authentication provider
+                // Authentication Provider
                 .authenticationProvider(authenticationProvider())
 
-                // Add JWT filter before UsernamePasswordAuthenticationFilter
-                // This ensures JWT validation happens first
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                // JWT Filter
+                .addFilterBefore(jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
-    /**
-     * Creates the authentication provider with UserDetailsService and
-     * PasswordEncoder.
-     *
-     * @return configured AuthenticationProvider
-     */
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:3000",
+                "http://localhost:5173",
+
+                // Your Vercel Frontend
+                "https://spend-wise-eight-virid.vercel.app"));
+
+        configuration.setAllowedMethods(Arrays.asList(
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE",
+                "PATCH",
+                "OPTIONS"));
+
+        configuration.setAllowedHeaders(List.of("*"));
+
+        configuration.setExposedHeaders(List.of(
+                "Authorization"));
+
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
+        source.registerCorsConfiguration("/**", configuration);
+
+        return source;
+    }
+
     @Bean
     public AuthenticationProvider authenticationProvider() {
+
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
+
         return authProvider;
     }
 
-    /**
-     * Creates the authentication manager for programmatic authentication.
-     *
-     * @param config AuthenticationConfiguration
-     * @return AuthenticationManager
-     * @throws Exception if configuration fails
-     */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration config) throws Exception {
+
         return config.getAuthenticationManager();
     }
 
-    /**
-     * Creates the password encoder using BCrypt.
-     * BCrypt automatically handles salt generation and is resistant to rainbow
-     * table attacks.
-     *
-     * @return BCryptPasswordEncoder
-     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
