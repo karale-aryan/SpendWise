@@ -1,7 +1,9 @@
 services:
   - type: web
     name: spendwise
-    runtime: docker
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/spendwise-1.0.0.jar
     plan: starter
     envVars:
       - key: SPRING_DATASOURCE_URL
