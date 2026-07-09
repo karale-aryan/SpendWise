@@ -76,7 +76,8 @@ public class SecurityConfig {
                 "http://localhost:5173",
 
                 // Your Vercel Frontend
-                "https://spend-wise-eight-virid.vercel.app"));
+                "https://spend-wise-eight-virid.vercel.app",
+                "https://spend-wise-aryans-projects-06012d90.vercel.app"));
 
         configuration.setAllowedMethods(Arrays.asList(
                 "GET",
